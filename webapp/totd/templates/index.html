@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <script src="https://platform.twitter.com/widgets.js" type="text/javascript" charset="utf-8"></script>
+        <title>Tweet of the day</title>
+        <script type="text/javascript">
+            // in case the document is already rendered
+            if (document.readyState!='loading') run();
+            // modern browsers
+            else if (document.addEventListener) document.addEventListener('DOMContentLoaded', run);
+            // IE <= 8
+            else document.attachEvent('onreadystatechange', function(){
+                if (document.readyState=='complete') run();
+            });
+
+            function run(){
+                button = document.getElementById("newtweet");
+                button.onclick = getNewTweet;
+            };
+
+            function getAjax(url, success) {
+                var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+                xhr.open('GET', url);
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState>3 && xhr.status==200) success(xhr.responseText);
+                };
+                xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+                xhr.send();
+                return xhr;
+            };
+
+            function getNewTweet(e){
+                console.log('click');
+                getAjax('/newtweet', function(data){
+                    //alert("Success: " + r.responseText);
+                    var tweet = document.getElementById("tweet");
+                    tweet.innerHTML = data;
+                    twttr.widgets.load();
+                });
+            };
+
+        </script>
+        <style>
+            body{
+                font-family: "Nimbus Sans L", Helvetica, sans-serif;
+                color: rgb(28, 32, 34);
+            }
+            span.reload{
+                color: #55ACEE;
+            }
+            a:hover span.reload{
+                color: rgb(28, 32, 34);
+            }
+            #button{
+                width: 800px;
+                margin:0 auto;
+                text-align: center;
+            }
+            a:link    {
+                color: rgb(28, 32, 34);
+                text-decoration: none;
+            }
+            a:visited { color: rgb(28, 32, 34) }
+            a:hover   {
+                color: #55ACEE;
+                /* color: rgb(35, 42, 44);*/
+                text-decoration: none;
+            }
+            a:active  { color: rgb(28, 32, 34) }
+        </style>
+    </head>
+    <body>
+        <div id="tweet">
+            {{ tweet }}
+        </div>
+        <div id="button">
+            <a href="#" id="newtweet"><span class='reload'>&#x21bb;</span> New tweet</a>
+        <div>
+    </body>
+</html>

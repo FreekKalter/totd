@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>Tweet databse</title>
+        <style>
+            table{
+                font-family: "Courier", sans-serif;
+                width: 100%;
+                text-align: left;
+            }
+        </style>
+    </head>
+    <body>
+        <table>
+            {% for tweet in tweets %}
+                <tr>
+                    <th>{{ tweet.text }}</th>
+                    <th>{{ tweet.random_change }}</th>
+                </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>
