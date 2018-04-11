@@ -2,8 +2,11 @@ import json
 from twitter import Twitter, OAuth
 from . import app
 
-twitter = Twitter(auth=OAuth(app.config['TOKEN'], app.config['TOKEN_SECRET'],
-                             app.config['CONSUMER_KEY'], app.config['CONSUMER_SECRET']), retry=3)
+twitter = Twitter(auth=OAuth(app.config['TOKEN'],
+                             app.config['TOKEN_SECRET'],
+                             app.config['CONSUMER_KEY'],
+                             app.config['CONSUMER_SECRET']),
+                  retry=3)
 
 
 def init():
@@ -53,6 +56,7 @@ def update():
     for fav in all:
         if fav['id'] not in ids:
             new.append(fav)
+            print(fav['text'])
     print(len(new), 'new tweets downloaded from twitter.com')
     for fav in new:
         fav['random_change'] = 0

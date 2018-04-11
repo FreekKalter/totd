@@ -15,6 +15,7 @@
             function run(){
                 button = document.getElementById("newtweet");
                 button.onclick = getNewTweet;
+                twttr.widgets.createTweet('{{tweet}}', document.getElementById('tweet'), {align: 'center'});
             };
 
             function getAjax(url, success) {
@@ -33,8 +34,11 @@
                 getAjax('/newtweet', function(data){
                     //alert("Success: " + r.responseText);
                     var tweet = document.getElementById("tweet");
-                    tweet.innerHTML = data;
-                    twttr.widgets.load();
+                    tweet.innerHTML = "";
+                    twttr.widgets.createTweet(data, document.getElementById('tweet'), {align: 'center'});
+                    //var tweet = document.getElementById("tweet");
+                    //tweet.innerHTML = data;
+                    //twttr.widgets.load();
                 });
             };
 
@@ -49,6 +53,9 @@
             }
             a:hover span.reload{
                 color: rgb(28, 32, 34);
+            }
+            #tweet{
+                min-height: 200px;
             }
             #button{
                 width: 800px;
@@ -70,7 +77,6 @@
     </head>
     <body>
         <div id="tweet">
-            {{ tweet }}
         </div>
         <div id="button">
             <a href="#" id="newtweet"><span class='reload'>&#x21bb;</span> New tweet</a>

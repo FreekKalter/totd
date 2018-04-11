@@ -14,11 +14,12 @@ def pick():
         if pick <= 0:
             print(fav['text'])
             fav['random_change'] = 0
-            return totd.twitter.statuses.oembed(
-                url=totd.build_url(fav),
-                omit_script=True,
-                align='center',
-                maxwidth=550)['html']
+            return fav['id']
+            # return totd.twitter.statuses.oembed(
+            #     url=totd.build_url(fav),
+            #     omit_script=False,
+            #     align='center',
+            #     maxwidth=550)['html']
 
 
 def reset_changes(fav_list):
