@@ -39,4 +39,7 @@ def newtweet():
 
 @app.route('/dump')
 def dump():
-    return(render_template('dump.html', tweets=app.favs))
+    if app.config['DEBUG']:
+        return(render_template('dump.html', tweets=app.favs))
+    else:
+        return
