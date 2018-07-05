@@ -12,7 +12,7 @@ twitter = Twitter(auth=OAuth(app.config['TOKEN'],
 def init():
     app.favs = []
     try:  # try to load saved tweets
-        with open('tweets.json', 'r') as fh:
+        with open(app.config['DB_FILE'], 'r') as fh:
             app.favs = json.load(fh)
         print(len(app.favs), 'tweets loaded from tweets.json')
     except FileNotFoundError:
@@ -45,7 +45,7 @@ def get_all_tweets():
 def save():
     # save tweets to file
     print('number of tweets stored:', len(app.favs))
-    with open('tweets.json', 'w') as fh:
+    with open(app.config['DB_FILE'], 'w') as fh:
         json.dump(app.favs, fh)
 
 
