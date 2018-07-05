@@ -60,6 +60,7 @@ def update():
     print(len(new), 'new tweets downloaded from twitter.com')
     for fav in new:
         fav['random_change'] = 0
+    save()
     return new
 
 

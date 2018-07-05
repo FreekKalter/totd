@@ -9,4 +9,4 @@ VOLUME /code/instance
 WORKDIR /code
 RUN pip install -U pip
 RUN pip install -r totd/requirements.txt
-CMD python3.6 run.py
+CMD ["python", "./run.py"]
