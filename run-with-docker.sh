@@ -9,7 +9,8 @@ docker build --tag $DOCKER_IMAGE .
 
 docker stop $CONTAINER
 docker rm $CONTAINER
-docker run -d -v $(pwd)/tweets.json:/data/tweets.json \
+docker run -it -v $(pwd)/tweets.json:/data/tweets.json \
               -v $(pwd)/instance/flask.cfg:/code/instance/flask.cfg:ro \
               -p 8000:8000 \
-              --name $CONTAINER $DOCKER_IMAGE
+              --name $CONTAINER $DOCKER_IMAGE bash
+
